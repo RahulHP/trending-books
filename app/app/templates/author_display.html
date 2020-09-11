@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% block display_item %}
+    <div class="col col-2"><img src="{{ object['image_url'] }}" /></div>
+    <div class="col col-9">
+        <div><strong>{{ object['name'] }}</strong></div>
+        <div>
+            {% for i in range( object['average_rating']|int ) %}
+                <i class="fas fa-star"></i>
+            {% endfor %}
+            {% for i in range( object['average_rating']|int, 5) %}
+                <i class="far fa-star"></i>
+            {% endfor %}
+            </div>
+        <div><small>{{ object['reviews_count']}} reviews - {{ object['ratings_count'] }} ratings</small></div>
+    </div>
+    <div class="col col-1">
+        <div><span>{{ object['stat_value']|int }}</span></div>
+        <div><small>{% if sort=='popularity' %}recent reviews {% else %} recent avg rating {% endif %}</small></div>
+    </div>
+{% endblock %}
